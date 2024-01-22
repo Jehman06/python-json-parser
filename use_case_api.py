@@ -1,11 +1,12 @@
 # Example usage of the Python JSON parser using the JSONPlaceholder API
 
 import requests
+import pprint
 from json_parser import JSON_parser
 
 def make_api_request():
     # Make a request to a JSON API
-    response = requests.get('https://pokeapi.co/api/v2/pokemon/ditto')
+    response = requests.get('https://pokeapi.co/api/v2/pokemon/pikachu')
 
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
@@ -14,8 +15,9 @@ def make_api_request():
         parsed_data = json_parser.parse()
 
         # Display the parsed data
-        for key, value in parsed_data.items():
-            print(f"{key}: {value} \n")
+        pprint.pprint(parsed_data)
+        # for key, value in parsed_data.items():
+        #     print(f"{key}: {value} \n")
     else:
         print(f"Failed to make API request. Status code: {response.status_code}")
 
