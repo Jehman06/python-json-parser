@@ -6,7 +6,7 @@ from json_parser import JSON_parser
 
 def make_api_request():
     # Make a request to a JSON API endpoint
-    response = requests.get('https://pokeapi.co/api/v2/pokemon/pikachu')
+    response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
 
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
