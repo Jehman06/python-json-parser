@@ -66,8 +66,17 @@ class JSON_parser:
 
                 # Check the character following the backslash for escape sequences
                 escape_char = self.json_string[self.index]
-                if escape_char in escape_mapping:
-                    # Handle recognized escape sequence
+                if escape_char == "n":
+                    parsed_string += "\n"
+                elif escape_char == "t":
+                    parsed_string += "\t"
+                elif escape_char == "u":
+                    # Handle Unicode escape sequence
+                    unicode_sequence = self.json_string[self.index + 1 : self.index + 5]
+                    parsed_string += chr(int(unicode_sequence, 16))
+                    self.index += 4  # Skip the next 4 characters (representing the Unicode sequence)
+                elif escape_char in escape_mapping:
+                    # Handle other recognized escape sequences
                     parsed_string += escape_mapping[escape_char]
                 else:
                     # Handle unrecognized escape sequence
